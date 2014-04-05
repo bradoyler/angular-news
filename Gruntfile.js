@@ -283,6 +283,23 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }]
       },
+      ghpages: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= yeoman.dist %>',
+          dest: '',
+          src: [
+            '*.{ico,png,txt}',
+            '*.html',
+            'views/{,*/}*.html',
+            'styles/{,*/}*.css',
+            'fonts/{,*/}*.*',
+            'scripts/{,*/}*.js'
+          ]
+        }]
+      },
+
       styles: {
         expand: true,
         cwd: '<%= yeoman.app %>/styles',
@@ -385,6 +402,10 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin'
+  ]);
+
+    grunt.registerTask('ghpages', [
+    'copy:ghpages'
   ]);
 
   grunt.registerTask('default', [
