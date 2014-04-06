@@ -1,23 +1,26 @@
 'use strict';
 
-var apihost='http://newsapi-proxy.herokuapp.com/api';
+var apihost = 'http://newsapi-proxy.herokuapp.com/api';
 
 // Controllers
 angular.module('ngnewsApp')
 	.controller('MainCtrl', function($scope, $http, $rootScope) {
 
-		if($rootScope.coverRes) {
+		// $scope.isCollapsed = true;
+		// $scope.toggleMenu = function() {
+		// 	$scope.isCollapsed = $scope.isCollapsed === false ? true: false;
+		// };
+
+		if ($rootScope.coverRes) {
 			$scope.articles = $rootScope.coverRes.results;
-		}
-		else {
+		} else {
 			$http({
 				method: 'GET',
-				url: apihost+'/curatedcover'
+				url: apihost + '/curatedcover'
 			}).success(function(data, status, headers, config) {
 				$scope.articles = data.results;
 				$rootScope.coverRes = data;
-			}).error(function(data, status, headers, config) {
-			});
+			}).error(function(data, status, headers, config) {});
 		}
 
 	});
@@ -25,19 +28,19 @@ angular.module('ngnewsApp')
 
 angular.module('ngnewsApp')
 	.controller('ArticleCtrl', function($scope, $http, $routeParams, $rootScope, $filter, $anchorScroll) {
-	
-		if($rootScope.coverRes) {
-			var thisArticle = $filter('filter')($rootScope.coverRes.results, {externalId: $routeParams.externalId});
+
+		if ($rootScope.coverRes) {
+			var thisArticle = $filter('filter')($rootScope.coverRes.results, {
+				externalId: $routeParams.externalId
+			});
 			$scope.item = thisArticle[0];
-		}
-		else {
+		} else {
 			$http({
 				method: 'GET',
-				url: apihost+'/entrybyid?articleId=NewsCms%2Fentry%2F'+ $routeParams.externalId
+				url: apihost + '/entrybyid?articleId=NewsCms%2Fentry%2F' + $routeParams.externalId
 			}).success(function(data, status, headers, config) {
 				$scope.item = data.results[0];
-			}).error(function(data, status, headers, config) {
-			});
+			}).error(function(data, status, headers, config) {});
 		}
 
 		$anchorScroll();
@@ -70,4 +73,3 @@ angular.module('ngnewsApp')
 	.factory('Articles', function() {
 		return [];
 	});
-
