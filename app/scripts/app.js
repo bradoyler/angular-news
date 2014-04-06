@@ -15,11 +15,11 @@ angular
 
     $routeProvider
       .when('/', {
-        templateUrl: '/views/main.html',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
       .when('/article/:externalId', {
-        templateUrl: '/views/article.html',
+        templateUrl: 'views/article.html',
         controller: 'ArticleCtrl'
       })
       .otherwise({
