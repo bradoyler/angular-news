@@ -6,7 +6,8 @@ angular
     'ngResource',
     'ngSanitize',
     'ngRoute',
-    'angularMoment'
+    'angularMoment',
+    'ui.bootstrap'
   ])
   .config(function($routeProvider, $anchorScrollProvider, $locationProvider) {
 

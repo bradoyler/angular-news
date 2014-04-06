@@ -1,23 +1,24 @@
 <nav class="navbar navbar-default" role="navigation">
      <div class="navbar-header">
-      <button type="button" ng-click="isCollapsed = !isCollapsed" class="navbar-toggle">
+      <button type="button" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" class="btn btn-navbar navbar-toggle">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">The News</a>
+      <a href="#/" class="navbar-brand">The News</a>
     </div>
-<div class="collapse" collapse="isCollapsed">
-<ul class="nav navbar-nav" bs-nav>
-  <li ng-class="{active: $path() == '/'}"><a href="#/">Home</a></li>
-  <li ng-class="{active: $path() == '/news'}"><a href="#/news">News</a></li>
-  <li ng-class="{active: $path() == '/tech'}"><a href="#/tech">Tech</a></li>
-  <li ng-class="{active: $path() == '/health'}"><a href="#/health">Health</a></li>
-  <li ng-class="{active: $path() == '/politics'}"><a href="#/politics">Politics</a></li>
-</ul>
+  <div collapse="navCollapsed" class="nav-collapse collapse navbar-responsive-collapse">
+    <ul class="nav">
+      <li ng-class="{active: $path() == '/'}"><a href="#/">Home</a></li>
+      <li ng-class="{active: $path() == '/news'}"><a href="#/news">News</a></li>
+      <li ng-class="{active: $path() == '/tech'}"><a href="#/tech">Tech</a></li>
+      <li ng-class="{active: $path() == '/health'}"><a href="#/health">Health</a></li>
+      <li ng-class="{active: $path() == '/politics'}"><a href="#/politics">Politics</a></li>
+    </ul>
+  </div>
 </nav>
-</div>
+
 
 <div ng-repeat="item in articles">
  <div class="panel panel-default">

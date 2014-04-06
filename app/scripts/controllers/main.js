@@ -6,7 +6,10 @@ var apihost = 'http://newsapi-proxy.herokuapp.com/api';
 angular.module('ngnewsApp')
 	.controller('MainCtrl', function($scope, $http, $rootScope) {
 
-		//$scope.isCollapsed = false;
+		// $scope.isCollapsed = true;
+		// $scope.toggleMenu = function() {
+		// 	$scope.isCollapsed = $scope.isCollapsed === false ? true: false;
+		// };
 
 		if ($rootScope.coverRes) {
 			$scope.articles = $rootScope.coverRes.results;
