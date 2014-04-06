@@ -1,18 +1,50 @@
 'use strict';
 
-angular.module('ngnewsApp')
-	.controller('MainCtrl', function($scope, $http) {
+var apihost='http://newsapi-proxy.herokuapp.com/api';
 
-		$http({
-			method: 'GET',
-			url: 'http://newsapi-proxy.herokuapp.com/api/curatedcover'
-		}).success(function(data, status, headers, config) {
-			$scope.results = data.results;
-		}).error(function(data, status, headers, config) {
-		});
+// Controllers
+angular.module('ngnewsApp')
+	.controller('MainCtrl', function($scope, $http, $rootScope) {
+
+		if($rootScope.coverRes) {
+			$scope.articles = $rootScope.coverRes.results;
+		}
+		else {
+			$http({
+				method: 'GET',
+				url: apihost+'/curatedcover'
+			}).success(function(data, status, headers, config) {
+				$scope.articles = data.results;
+				$rootScope.coverRes = data;
+			}).error(function(data, status, headers, config) {
+			});
+		}
 
 	});
 
+
+angular.module('ngnewsApp')
+	.controller('ArticleCtrl', function($scope, $http, $routeParams, $rootScope, $filter) {
+	
+		var thisArticle = $filter('filter')($rootScope.coverRes.results, {externalId: $routeParams.externalId});
+
+		if(thisArticle) {
+			$scope.item = thisArticle[0];
+		}
+		else {
+			$http({
+				method: 'GET',
+				url: apihost+'/entrybyid?articleId=NewsCms%2Fentry%2F'+ $routeParams.externalId
+			}).success(function(data, status, headers, config) {
+				$scope.item = data.results[0];
+			}).error(function(data, status, headers, config) {
+			});
+		}
+
+	});
+
+
+// Directives 
 angular.module('ngnewsApp')
 	.directive('adaptiveImage', function() {
 		return {
@@ -31,3 +63,10 @@ angular.module('ngnewsApp')
 			}
 		};
 	});
+
+// Services
+angular.module('ngnewsApp')
+	.factory('Articles', function() {
+		return [];
+	});
+

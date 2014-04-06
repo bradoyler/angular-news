@@ -1,14 +1,4 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">The News</h3>
-</div>
-
-<div ng-repeat="item in articles">
- <div class="panel panel-default">
+<div class="panel panel-default">
   <div class="panel-heading"> 
     <h3 class="panel-title">
     <a class="btn btn-default btn-xs" href="#/{{item.sections[0].slug}}">
@@ -19,18 +9,17 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-4">
-        <a href="#/article/{{item.externalId}}">
-         <img class="media-object img-responsive" adaptive-image="item.main_art.url"/>
-        </a>
+        <img class="media-object img-responsive" adaptive-image="item.main_art.url"/>
       </div>
       <div class="col-md-8">
-        <a href="#/article/{{item.externalId}}">
           <h3>
             {{item.headline}}
           </h3>
-        </a>
           <p>{{item.summary}}</p>
-         <p>{{item.body[0].html}}</p>
+          <div ng-repeat="bodyitem in item.body">
+            <p>{{bodyitem.html}}</p>
+          </div>
+         
       </div>
     </div>
   </div>
@@ -47,11 +36,4 @@
       </button>
    </div>
   </div>
-</div>
-
-</div>
-
-
-<div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> </p>
 </div>
