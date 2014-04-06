@@ -1,10 +1,22 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-    <li><a ng-href="#">About</a></li>
-    <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">The News</h3>
+<nav class="navbar navbar-default" role="navigation">
+     <div class="navbar-header">
+      <button type="button" ng-click="isCollapsed = !isCollapsed" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">The News</a>
+    </div>
+<div class="collapse" collapse="isCollapsed">
+<ul class="nav navbar-nav" bs-nav>
+  <li ng-class="{active: $path() == '/'}"><a href="#/">Home</a></li>
+  <li ng-class="{active: $path() == '/news'}"><a href="#/news">News</a></li>
+  <li ng-class="{active: $path() == '/tech'}"><a href="#/tech">Tech</a></li>
+  <li ng-class="{active: $path() == '/health'}"><a href="#/health">Health</a></li>
+  <li ng-class="{active: $path() == '/politics'}"><a href="#/politics">Politics</a></li>
+</ul>
+</nav>
 </div>
 
 <div ng-repeat="item in articles">
@@ -36,7 +48,8 @@
       <div class="col-md-8">
         <a href="#/article/{{item.externalId}}">
           <h3>
-            {{item.headline}}
+             <div class="btn btn-default">{{item.type}}</div>
+            {{item.headline}} 
           </h3>
         </a>
           <p>{{item.summary}}</p>
@@ -45,7 +58,6 @@
     </div>
   </div>
   <div class="panel-footer">
-    <div class="btn btn-default">{{item.type}}</div>
     <div class="btn-group">
       <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-star"></span>

@@ -5,7 +5,7 @@ angular
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'ngRoute', 
+    'ngRoute',
     'angularMoment'
   ])
   .config(function($routeProvider, $anchorScrollProvider, $locationProvider) {
