@@ -21,7 +21,9 @@
         {{item.storyline[0].title}}
     </a> 
     <div class="btn btn-default btn-xs">{{item.bylines[0].name}}</div> 
-    <div class="badge pull-right">{{item.first_published_utc}}</div> 
+    <div class="badge pull-right">
+      <span am-time-ago="item.first_published_utc"></span>
+    </div> 
    </h3>
   </div>
   <div class="panel-body">
