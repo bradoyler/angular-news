@@ -14,6 +14,14 @@
     <a class="btn btn-default btn-xs" href="#/{{item.sections[0].slug}}">
         {{item.sections[0].title}}
     </a> 
+    <a class="btn btn-default btn-xs" href="#/{{item.sections[0].slug}}/{{item.topics[0].slug}}">
+        {{item.topics[0].title}}
+    </a> 
+    <a class="btn btn-default btn-xs" href="#/storyline/{{item.storyline[0].slug}}">
+        {{item.storyline[0].title}}
+    </a> 
+    <div class="btn btn-default btn-xs">{{item.bylines[0].name}}</div> 
+    <div class="badge pull-right">{{item.first_published_utc}}</div> 
    </h3>
   </div>
   <div class="panel-body">
@@ -35,6 +43,7 @@
     </div>
   </div>
   <div class="panel-footer">
+    <div class="btn btn-default">{{item.type}}</div>
     <div class="btn-group">
       <button type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-star"></span>
