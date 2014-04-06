@@ -9,7 +9,7 @@ angular
   ])
   .config(function($routeProvider, $anchorScrollProvider) {
 
-    $anchorScrollProvider.disableAutoScrolling();
+   // $anchorScrollProvider.disableAutoScrolling();
 
     $routeProvider
       .when('/', {

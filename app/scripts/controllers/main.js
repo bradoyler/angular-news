@@ -24,11 +24,10 @@ angular.module('ngnewsApp')
 
 
 angular.module('ngnewsApp')
-	.controller('ArticleCtrl', function($scope, $http, $routeParams, $rootScope, $filter) {
+	.controller('ArticleCtrl', function($scope, $http, $routeParams, $rootScope, $filter, $anchorScroll) {
 	
-		var thisArticle = $filter('filter')($rootScope.coverRes.results, {externalId: $routeParams.externalId});
-
-		if(thisArticle) {
+		if($rootScope.coverRes) {
+			var thisArticle = $filter('filter')($rootScope.coverRes.results, {externalId: $routeParams.externalId});
 			$scope.item = thisArticle[0];
 		}
 		else {
@@ -40,6 +39,8 @@ angular.module('ngnewsApp')
 			}).error(function(data, status, headers, config) {
 			});
 		}
+
+		$anchorScroll();
 
 	});
 
