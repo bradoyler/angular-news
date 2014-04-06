@@ -404,7 +404,7 @@ module.exports = function (grunt) {
     'htmlmin'
   ]);
 
-    grunt.registerTask('ghpages', [
+  grunt.registerTask('ghpages', [
     'copy:ghpages'
   ]);
 
