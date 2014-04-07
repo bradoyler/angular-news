@@ -7,6 +7,7 @@ angular
     'ngSanitize',
     'ngRoute',
     'angularMoment',
+    'angularShamSpinner',
     'ui.bootstrap'
   ])
   .config(function($routeProvider, $anchorScrollProvider, $locationProvider, $httpProvider) {
