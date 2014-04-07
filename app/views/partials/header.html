@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default" role="navigation">
+     <div class="navbar-header">
+      <button type="button" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" class="btn btn-navbar navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#/" class="navbar-brand">The News</a>
+    </div>
+  <div collapse="navCollapsed" class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav">
+      <li ng-class="{active: $path() == '/'}"><a href="#/"><span class="glyphicon glyphicon-home"></span></a></li>
+      <li ng-class="{active: $path() == '/news'}"><a href="#/news">News</a></li>
+      <li ng-class="{active: $path() == '/tech'}"><a href="#/tech">Tech</a></li>
+      <li ng-class="{active: $path() == '/health'}"><a href="#/health">Health</a></li>
+      <li ng-class="{active: $path() == '/politics'}"><a href="#/politics">Politics</a></li>
+      <li ng-class="{active: $path() == '/business'}"><a href="#/business">Business</a></li>
+      <li ng-class="{active: $path() == '/science'}"><a href="#/science">Science</a></li>
+      <li ng-class="{active: $path() == '/pop-culture'}"><a href="#/pop-culture">Pop culture</a></li>
+    </ul>
+  </div>
+</nav>

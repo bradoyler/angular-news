@@ -1,7 +1,7 @@
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -41,6 +41,13 @@ body {
     max-width: 930px;
   }
 }
+
+@media (max-width: 768px) {
+  .first-paragraph {
+    display: none;
+  }
+}
+
 .container-narrow > hr {
   margin: 30px 0;
 }
@@ -80,4 +87,29 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+
+
+.sham-spinner-blocker {
+  background: #333;
+  opacity: 0.2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5000;
+}
+.sham-spinner-blocker .sham-spinner-container {
+  border: none;
+  background-color: #000;
+  display: table;
+  position: relative;
+  width: auto;
+  top: 45%;
+  margin: auto;
+}
+.sham-spinner-blocker .sham-spinner-container .spinner {
+  display: block;
+  float: left;
+  width: 50px;
+  height: 50px;
 }

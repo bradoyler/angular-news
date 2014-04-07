@@ -17,7 +17,7 @@
           </h3>
           <p>{{item.summary}}</p>
           <div ng-repeat="bodyitem in item.body">
-            <p>{{bodyitem.html}}</p>
+            <p ng-bind-html="bodyitem.html"></p>
           </div>
          
       </div>

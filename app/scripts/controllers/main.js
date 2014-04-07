@@ -4,27 +4,44 @@ var apihost = 'http://newsapi-proxy.herokuapp.com/api';
 
 // Controllers
 angular.module('ngnewsApp')
-	.controller('MainCtrl', function($scope, $http, $rootScope) {
+	.controller('MainCtrl', function($scope, $http, $rootScope, $location) {
+		$scope.$path = $location.path.bind($location);
 
-		// $scope.isCollapsed = true;
-		// $scope.toggleMenu = function() {
-		// 	$scope.isCollapsed = $scope.isCollapsed === false ? true: false;
-		// };
-
-		if ($rootScope.coverRes) {
-			$scope.articles = $rootScope.coverRes.results;
-		} else {
-			$http({
-				method: 'GET',
-				url: apihost + '/curatedcover'
-			}).success(function(data, status, headers, config) {
-				$scope.articles = data.results;
-				$rootScope.coverRes = data;
-			}).error(function(data, status, headers, config) {});
-		}
+		$http({
+			method: 'GET',
+			url: apihost + '/curatedcover'
+		}).success(function(data, status, headers, config) {
+			$scope.articles = data.results;
+			$rootScope.coverRes = data;
+		}).error(function(data, status, headers, config) {});
 
 	});
 
+angular.module('ngnewsApp')
+	.controller('SectionCtrl', function($scope, $http, $routeParams, $rootScope, $location) {
+
+		$http({
+			method: 'GET',
+			url: apihost + '/entriesbysection?section=' + $routeParams.sectionSlug
+		}).success(function(data, status, headers, config) {
+			$scope.articles = data.results;
+			$rootScope.sectionRes = data;
+		}).error(function(data, status, headers, config) {});
+
+	});
+
+angular.module('ngnewsApp')
+	.controller('TopicCtrl', function($scope, $http, $routeParams, $rootScope, $location) {
+
+		$http({
+			method: 'GET',
+			url: apihost + '/entriesbytopic?topic=' + $routeParams.topicSlug
+		}).success(function(data, status, headers, config) {
+			$scope.articles = data.results;
+			$rootScope.sectionRes = data;
+		}).error(function(data, status, headers, config) {});
+
+	});
 
 angular.module('ngnewsApp')
 	.controller('ArticleCtrl', function($scope, $http, $routeParams, $rootScope, $filter, $anchorScroll) {
@@ -64,6 +81,35 @@ angular.module('ngnewsApp')
 					}
 					elm.prop('src', imgurl);
 				});
+			}
+		};
+	});
+
+angular.module('ngnewsApp')
+	.directive('panelA', function() {
+		return {
+			templateUrl: 'views/partials/panel-a.html'
+		};
+	});
+
+angular.module('ngnewsApp')
+	.directive('loadingIndicator', function() {
+		return {
+			restrict: 'A',
+			template: '<div>Loading...</div>',
+			link: function(scope, element, attrs) {
+				scope.$on('loading-started', function(e) {
+					element.css({
+						'display': ''
+					});
+				});
+
+				scope.$on('loading-complete', function(e) {
+					element.css({
+						'display': 'none'
+					});
+				});
+
 			}
 		};
 	});
