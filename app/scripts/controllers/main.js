@@ -44,31 +44,31 @@ angular.module('ngnewsApp')
 	});
 
 angular.module('ngnewsApp')
+	.controller('StorylineCtrl', function($scope, $http, $routeParams, $rootScope, $location) {
+
+		$http({
+			method: 'GET',
+			url: apihost + '/entriesbystoryline?&count=1&sort=-firstpub&storyline='+ $routeParams.storylineSlug
+		}).success(function(data, status, headers, config) {
+			$scope.articles = data.results;
+			$rootScope.sectionRes = data;
+		}).error(function(data, status, headers, config) {});
+
+	});
+
+angular.module('ngnewsApp')
 	.controller('ArticleCtrl', function($scope, $http, $routeParams, $rootScope, $filter, $anchorScroll) {
 
-		var thisArticle=null;
-		if ($rootScope.coverRes) {
-			thisArticle = $filter('filter')($rootScope.coverRes.results, {
-				externalId: $routeParams.externalId
-			});
-		}
-
-		if(thisArticle[0]){
-			$scope.item = thisArticle[0];
-		}
-		else {
-			$http({
-				method: 'GET',
-				url: apihost + '/entrybyid?articleId=NewsCms%2Fentry%2F' + $routeParams.externalId
-			}).success(function(data, status, headers, config) {
-				$scope.item = data.results[0];
-			}).error(function(data, status, headers, config) {});
-		}
+		$http({
+			method: 'GET',
+			url: apihost + '/entrybyid?articleId=NewsCms%2Fentry%2F' + $routeParams.externalId
+		}).success(function(data, status, headers, config) {
+			$scope.item = data.results[0];
+		}).error(function(data, status, headers, config) {});
 
 		$anchorScroll();
 
 	});
-
 
 // Directives 
 angular.module('ngnewsApp')

@@ -7,7 +7,7 @@
     <a class="btn btn-default btn-xs" href="#/{{item.sections[0].slug}}/{{item.topics[0].slug}}">
         {{item.topics[0].title}}
     </a> 
-    <a class="btn btn-default btn-xs" href="#/storyline/{{item.storyline[0].slug}}">
+    <a ng-if="item.storyline[0]" class="btn btn-default btn-xs" href="#/storyline/{{item.storyline[0].slug}}">
         {{item.storyline[0].title}}
     </a> 
    </h3>

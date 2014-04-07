@@ -18,11 +18,16 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        title: 'The News: Home'
       })
       .when('/article/:externalId', {
         templateUrl: 'views/article.html',
         controller: 'ArticleCtrl'
+      })
+      .when('/storyline/:storylineSlug', {
+        templateUrl: 'views/main.html',
+        controller: 'StorylineCtrl'
       })
       .when('/:sectionSlug', {
         templateUrl: 'views/main.html',
